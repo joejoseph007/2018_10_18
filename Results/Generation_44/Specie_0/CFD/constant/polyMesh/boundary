@@ -1,0 +1,108 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+12
+(
+    inlet
+    {
+        type            patch;
+        nFaces          24;
+        startFace       20773;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          24;
+        startFace       20797;
+    }
+    top
+    {
+        type            patch;
+        nFaces          40;
+        startFace       20821;
+    }
+    bottom
+    {
+        type            patch;
+        nFaces          40;
+        startFace       20861;
+    }
+    front
+    {
+        type            empty;
+        inGroups        1(empty);
+        nFaces          10486;
+        startFace       20901;
+    }
+    back
+    {
+        type            empty;
+        inGroups        1(empty);
+        nFaces          10486;
+        startFace       31387;
+    }
+    VAWT1
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          88;
+        startFace       41873;
+    }
+    VAWT2
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          87;
+        startFace       41961;
+    }
+    VAWT3
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          78;
+        startFace       42048;
+    }
+    SHAFT
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          8;
+        startFace       42126;
+    }
+    AMI1
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          180;
+        startFace       42134;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI2;
+    }
+    AMI2
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          184;
+        startFace       42314;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI1;
+    }
+)
+
+// ************************************************************************* //
