@@ -94,8 +94,11 @@ Z2=Z2-Z2.min()
 #'''
 model = tf.keras.models.Sequential([
   tf.keras.layers.Flatten(),
-  tf.keras.layers.Dense(200, activation=tf.nn.relu),
-  tf.keras.layers.Dense(100, activation=tf.nn.relu),
+  tf.keras.layers.Dense(500, activation=tf.nn.relu),
+  tf.keras.layers.Dense(500, activation=tf.nn.relu),
+  tf.keras.layers.Dense(500, activation=tf.nn.relu),
+  tf.keras.layers.Dense(500, activation=tf.nn.relu),
+  
   #tf.keras.layers.Dense(10, activation=tf.nn.relu),
   #tf.keras.layers.Dense(100, activation=tf.nn.relu),
   
@@ -127,12 +130,14 @@ Z2=Z2-Z2.min()
 #print(model.evaluate(Z1, Z2))
 
 Answer=model.predict(Z1)
-print(Z2)
-print(Answer)
-print(len(Z2),len(Answer))
+#print(Z2)
+#print(Answer)
+#print(len(Z2),len(Answer))
 
 
 percentage=(Z2-Answer)/Z2
+#print(percentage)
+
 
 plt.plot(Z2)
 plt.plot(Answer)
@@ -141,8 +146,11 @@ plt.show()
 #print(Z1)
 
 #'''
+print(np.mean(percentage))
 
 
+plt.plot(percentage)
+plt.show()
 
 
 '''
