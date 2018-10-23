@@ -36,31 +36,27 @@ A="../Results/Generation_%i/Specie_%i"
 B="../Results/Generation_%i/Population/Specie_%i"
 
 
-
+'''
 i=0
 j=0
 t=0
-
 T=[]
-
-
+Power=[]
+thefile = open('Powers', 'a+')
 while 1:
 	if os.path.isdir(A%(i,j)):
 		os.chdir(A%(i,j))
-		
 		X=np.loadtxt('Genes')
-		Y=np.loadtxt('Power')
-		
+		Y=np.loadtxt('Power')	
+		thefile.write("%.6f\n" %Y)
 		os.chdir(Current_Working_Directory)
 		os.chdir('../Simulations')
-
 		np.savetxt('Genes%i'%t,X)
 		np.savetxt('Power%i'%t,[Y])
 		os.chdir(Current_Working_Directory)
 		j+=1
 		t+=1
 		continue
-	
 	elif os.path.isdir(A%(i+1,0)):
 		#print(i,j,t)
 		T.append([i,j])
@@ -68,9 +64,16 @@ while 1:
 		j=0
 		#print('here')
 		continue
-	
 	else:
 		break
-	
+
+'''
+
+Power=np.loadtxt('Powers')
+list1=[i for i in range(len(Power))]
+#np.random.randint(0,len(Power))
+random.shuffle(list1)
 
 
+plt.plot(Power)
+plt.show()
