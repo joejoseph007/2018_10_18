@@ -69,15 +69,15 @@ l=int(0.9*len(Numb))
 X=[]
 Y=[]
 for i in range(l):
-	X.append(X1[i])
-	Y.append(Y1[i])
+	X.append(X1[Numb[i]])
+	Y.append(Y1[Numb[i]])
 
 
 X2=[]
 Y2=[]
 for i in range(len(Numb)-l):
-	X2.append(X1[i])
-	Y2.append(Y1[i])
+	X2.append(X1[Numb[i]])
+	Y2.append(Y1[Numb[i]])
 
 
 
@@ -105,11 +105,13 @@ model = tf.keras.models.Sequential([
   
   tf.keras.layers.Dense(1, activation=tf.nn.sigmoid)
 ])
-model.compile(optimizer='adam',
+model.compile(optimizer='adamax',
               loss='mse',
               metrics=['accuracy'])
 
 
+print(np.shape(Z1))
+print(np.shape(Z2))
 
 model.fit(Z1, Z2, epochs=200)
 
@@ -130,12 +132,13 @@ Z2=Z2-Z2.min()
 #print(model.evaluate(Z1, Z2))
 
 Answer=model.predict(Z1)
+
 #print(Z2)
 #print(Answer)
 #print(len(Z2),len(Answer))
 
 
-percentage=(Z2-Answer)/Z2
+percentage=(Z2-Answer)/(Z2+0.001)
 #print(percentage)
 
 
